@@ -210,6 +210,79 @@ if (nom !== "" && maximPacients > 0) {
 }
 
 
+function ingressarPacients() {
+
+  var nom = "";
+  var malaltia = "";
+
+  for (var pacient = 0; pacient < hospital.maximPacients; pacient++) {
+    nom = document.getElementById("nomPacient" + pacient.toString()).value.toString();
+    malaltia = document.getElementById("malaltia" + pacient.toString()).value.toString();
+
+    if (nom !== "" && malaltia !== "") {
+      if (hospital !== null) {
+          hospital.ingressarPacient(new Pacient(nom, malaltia));
+      }
+    }
+  }
+
+  if (hospital !== null && (hospital.pacientsIngressats.length <= hospital.maximPacients)) {
+    eleID_divPacients.classList.toggle("d-none");
+
+    // document.getElementById("nomHospitalGestio").innerHTML = hospital.nomHospital;
+
+    for (var pacient = 0; pacient < hospital.pacientsIngressats.length; pacient++) {
+      document.getElementById("dadesGestio").innerHTML += ('<div class="row" id="dadesGestioPacient' + pacient.toString() + '">' +
+        '<div class="col mb-3">' +
+          '<label for="nomPacientGestio" class="font-weight-bold">Nom: </label>   <p id="nomPacientGestio' + pacient.toString() + '">' + hospital.pacientsIngressats[pacient].nom  + '</p>' +
+        '</div>' +
+        '<div class="col mb-3">' +
+          '<label for="malaltia" class="font-weight-bold">Malaltia: </label>  <p id="malaltiaGestio' + pacient.toString() + '">' + hospital.pacientsIngressats[pacient].malaltia  + '</p>' +
+        '</div>' +
+        '<div class="col mb-3">' +
+          '<button class="btn btn-success" onClick="gestioDonarDalta(' + pacient + ')">Donar d\'alta</button> <button class="btn btn-danger" onClick="gestioMorir(' + pacient + ')">Morir</button>' +
+        '<div class="col mb-3">' +
+      '</div>');
+    }
+    eleID_divGestio.classList.toggle("d-none");
+    // document.getElementById("divGestio").classList.remove("d-none");
+  }
+}
+
+function gestioDonarDalta(llitPacient) {
+  hospital.donarDaltaPacient(llitPacient);
+  document.getElementById("dadesGestioPacient" + llitPacient.toString()).remove();
+
+  if (totsLlitsBuits())
+  dadesGestio.innerHTML = ('<p class="text-center">L\'Hospital ' + hospital.nom + ' no té cap pacient ingressat en aquests moments.</p>' +
+  '<div class="text-center">' +
+    '<button type="button" class="btn btn-primary mt-4" onClick="window.location.reload()">Tornar a començar</button>' +
+  '</div>');
+}
+
+function gestioMorir(llitPacient) {
+  hospital.morirPacient(llitPacient);
+  document.getElementById("dadesGestioPacient" + llitPacient.toString()).remove();
+
+  if (totsLlitsBuits())
+    dadesGestio.innerHTML = ('<p class="text-center">L\'Hospital ' + hospital.nom + ' no té cap pacient ingressat en aquests moments.</p>' +
+    '<div class="text-center">' +
+      '<button type="button" class="btn btn-primary mt-4" onClick="window.location.reload()">Tornar a començar</button>' +
+    '</div>');
+}
+
+function totsLlitsBuits() {
+  var llitsBuits = true;
+  var llit = 0;
+
+  while(llitsBuits && llit < hospital.pacientsIngressats.length) {
+    llitsBuits = Object.keys(hospital.pacientsIngressats[llit]).length === 0;
+    llit++;
+  }
+
+  return llitsBuits;
+}
+
 
 
 
