@@ -106,6 +106,7 @@ function mostraBotons() {
       $(eleID_btnGestMetges).removeClass('btn-dark');
       $(eleID_btnGestMetges).addClass('btn-primary');
 
+
       $(eleID_btnGestAplicacio).removeClass('btn-dark');
       $(eleID_btnGestAplicacio).addClass('btn-primary');
 }
@@ -115,6 +116,7 @@ function amagaBotons() {
       eleID_btnGestPacients.disabled = true;
       eleID_btnGestMalalties.disabled = true;
       eleID_btnGestMetges.disabled = true;
+      eleID_btnGestCriteris.disabled = true;
       eleID_btnGestAplicacio.disabled = true;
 
       $(eleID_btnGestHospitals).removeClass('btn-primary');
@@ -131,6 +133,7 @@ function amagaBotons() {
 
       $(eleID_btnGestAplicacio).removeClass('btn-primary');
       $(eleID_btnGestAplicacio).addClass('btn-dark');
+
 }
 
 
@@ -339,6 +342,10 @@ function eliminaClass(elementRebut, nomClass) {
     function mostraGestioMetges(objecte){
           mostraMissatge(0);
     }
+
+
+
+
 
     function mostraGestioMalaties(objecte){
        mostraMissatge(0);
