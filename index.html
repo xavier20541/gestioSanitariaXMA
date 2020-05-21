@@ -63,8 +63,6 @@
         <h3 id="h3BarraMissatges"></h3>
       </div>
       <!-- FINAL barra de missatges -->
-      <!-- ==================================================================================== -->
-      <!-- ------------------------------------------------------------------------------------ -->
       <!-- INICI FILA APP -->
       <div class="row">
         <!-- INICI COLUMNA 1 >md 02 < -- > bloc control equerre -->
@@ -72,19 +70,19 @@
               <!-- INICI eleID_h4TitolPanell -->
               <h4 class="text-center" id="h4TitolPanell">Panell de Gestió</h4> <!-- mt margin top = 5 -->
               <!-- FINAL eleID_h4TitolPanell -->
-            <button type="button" id="btnGestHospitals" class="btn btn-primary btn-block" onClick="mostraGestioHospital(this)">Hospital</button>
-            <button type="button" id="btnGestPacients" class="btn btn-primary btn-block"  onClick="mostraGestioPacients(this)">Pacients</button>
-            <button type="button" id="btnGestMalalties" class="btn btn-primary btn-block"  onClick="mostraGestioMalaties(this)">Malalties</button>
-            <button type="button" id="btnGestMetges" class="btn btn-primary btn-block"  onClick="mostraGestioMetges()">Metges</button>
+            <button type="button" id="btnGestHospitals"   class="btn btn-primary btn-block"   onClick="mostraGestioHospital(this)">Hospital</button>
+            <button type="button" id="btnGestPacients"    class="btn btn-primary btn-block"   onClick="mostraGestioPacients(this)">Pacients</button>
+            <button type="button" id="btnGestMalalties"   class="btn btn-primary btn-block"   onClick="mostraGestioMalaties(this)">Malalties</button>
+            <button type="button" id="btnGestMetges"      class="btn btn-primary btn-block"   onClick="mostraGestioMetges()">Metges</button>
+            <button type="button" id="btnGestExp"         class="btn btn-primary btn-block"   onClick="mostraGestioExp()">Explicacio</button>
             <br>
-            <button type="button" id="btnGestAplicacio" class="btn btn-primary btn-block"  onClick="mostraGestioApp()">Control</button>
+            <button type="button" id="btnGestAplicacio"   class="btn btn-primary btn-block"   onClick="mostraGestioApp()">Control</button>
             <!-- <button type="button" class="btn btn-primary  btn-block" data-toggle="modal" data-target="#espaiModal">Open modal</button> -->
         </div>
         <!-- FINAL COLUMNA 1 >md 02 < -- > bloc control equerre -->
         <!-- ==================================================================================== -->
         <!-- INICI COLUMNA 2 >md 10 < -- >  modul escriptori -->
         <div class="col-md-10" id="divPanellEscriptori"> <!-- col-md-8  divPanellEscriptori -->
-          <!-- ------------------------------------------------------------------------------------ -->
           <!-- INICI eleID_divPresentacio -->
           <div class="w-100 mx-auto align-items-center border mt-8 mb-8 p-4 rounded shadow bg-white" id="divPresentacio">
               <!-- mt margin top = 8    mt margin bottom = 8 -->
@@ -92,7 +90,6 @@
               <p>Amb els botons del panell lateral, podràs accedir a tots els menus!</p>
           </div>
           <!-- FINAL eleID_divPresentacio -->
-          <!-- ------------------------------------------------------------------------------------ -->
           <!-- INICI eleID_divHospital -->
           <div class="w-100 mx-auto align-items-center border mt-8 mb-8 p-4 rounded shadow bg-white d-none" id="divHospital">
             <a href="#" class="close" data-dismiss="alert" aria-label="close" id="tancaDivHospital"><h3>&times;</h3></a>
@@ -143,6 +140,25 @@
             </div>
           </div>
           <!-- FINAL divPacients -->
+
+          <!-- INICI divMalalties -->
+          <div class="w-100 mx-auto align-items-center border mt-8 mb-8 p-4 rounded shadow bg-white d-none" id="divMalalties">
+            <h2 class="text-center">Malalties</h2>
+            <p class="text-center">Vista desplegable de les malalties:</p>
+            <div id="divMalalties_Desplegable">
+
+            </div>
+          </div>
+
+          <div class="w-100 mx-auto align-items-center border mt-8 mb-8 p-4 rounded shadow bg-white d-none" id="divExp">
+            <h2 class="text-center">Explicació</h2>
+            <p class="text-center">Explicacio del que s'ha fet</p>
+            <div>
+              <p>hola que tal</p>
+            </div>
+          </div>
+          <!-- FINAL divMalalties -->
+
           <!-- ------------------------------------------------------------------------------------ -->
           <!-- INICI divTractament -->
           <div class="w-100 mx-auto align-items-center border border-primary p-4 rounded shadow bg-white d-none" id="divTractament">
@@ -171,6 +187,7 @@
             </div>
           </div>
           <!-- FINAL divControls -->
+
         <!-- ------------------------------------------------------------------------------------ -->
         <!-- ==================================================================================== -->
         </div>
@@ -183,5 +200,6 @@
     <script src="./js/dadesMalalties.js" id="dadesMalaltiesJs"></script>
     <script src="./js/comprovacions.js" id="comprovacionsJs"></script>
     <script src="./js/main.js"></script>
+    <script>llistarMalalties();</script>
   </body>
 </html>
