@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="estils.css" type="text/css">
+
     <title id="titApp">Aplicació gestió Sanitària XMA nova branca</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -29,7 +31,7 @@
   <body>
     <!-- INICI container -->
     <div class="container">
-      <h1  class="text-center mt-3 mb-3" >Aplicació gestió Sanitària</h1>
+      <h1  class="text-center text mt-3 mb-3" >Aplicació gestió Sanitària</h1>
       <!-- ==================================================================================== -->
       <!-- INICI Missatge Modal -->
       <div class="modal fade" id="divEspaiModal">
@@ -68,7 +70,7 @@
         <!-- INICI COLUMNA 1 >md 02 < -- > bloc control equerre -->
         <div class="col-md-2" id="divPanellGestio">
               <!-- INICI eleID_h4TitolPanell -->
-              <h4 class="text-center" id="h4TitolPanell">Panell de Gestió</h4> <!-- mt margin top = 5 -->
+              <h4 class="text-center text" id="h4TitolPanell">Panell de Gestió</h4> <!-- mt margin top = 5 -->
               <!-- FINAL eleID_h4TitolPanell -->
             <button type="button" id="btnGestHospitals"   class="btn btn-primary btn-block"   onClick="mostraGestioHospital(this)">Hospital</button>
             <button type="button" id="btnGestPacients"    class="btn btn-primary btn-block"   onClick="mostraGestioPacients(this)">Pacients</button>
@@ -86,22 +88,22 @@
           <!-- INICI eleID_divPresentacio -->
           <div class="w-100 mx-auto align-items-center border mt-8 mb-8 p-4 rounded shadow bg-white" id="divPresentacio">
               <!-- mt margin top = 8    mt margin bottom = 8 -->
-              <h4  class="text-center mt-3 mb-3" >Benvigut a l'aplicació de gestió Sanitària</h4>
-              <p>Amb els botons del panell lateral, podràs accedir a tots els menus!</p>
+              <h4  class="text-center mt-3 mb-3 text" >Benvigut a l'aplicació de gestió Sanitària</h4>
+              <p class="text">Amb els botons del panell lateral, podràs accedir a tots els menus!</p>
           </div>
           <!-- FINAL eleID_divPresentacio -->
           <!-- INICI eleID_divHospital -->
           <div class="w-100 mx-auto align-items-center border mt-8 mb-8 p-4 rounded shadow bg-white d-none" id="divHospital">
             <a href="#" class="close" data-dismiss="alert" aria-label="close" id="tancaDivHospital"><h3>&times;</h3></a>
-            <h2 class="text-center">Gestió d'hospitals</h2>
+            <h2 class="text-center text">Gestió d'hospitals</h2>
             <hr style="border: 2px solid green; border-radius: 10px;">
-            <p class="text-center">Introdueix les dades de l'hospital que vols crear:</p>
+            <p class="text-center text">Introdueix les dades de l'hospital que vols crear:</p>
             <hr style="border: 1px solid green; border-radius: 10px;">
             <!-- INICI formIntroHospital -->
             <div class="form-row" id="formIntroHospital">
               <!-- INICI formIntroHospital_Nom -->
               <div class="col mb-6" id="formIntroHospital_Nom">
-                <label for="nomHospital" class="font-weight-bold" > Nom: </label>
+                <label for="nomHospital" class="font-weight-bold text" > Nom: </label>
                 <input type="text" id="inputNomHospital" name="Nom"  title="Introdueix el nom de l'Hospital."
                        class="form-control" required minlength="1" maxlength="100"
                        onblur="comprovaCampBuit(this)" value="General de Catalunya">
@@ -109,7 +111,7 @@
               <!-- FINAL formIntroHospital_Nom -->
               <!-- INICI formIntroHospital_Llits -->
               <div class="col mb-6" id="formIntroHospital_Llits">
-                <label for="maximPacients" class="font-weight-bold">Màxim de pacients que pot ingressar: </label>
+                <label for="maximPacients" class="font-weight-bold text">Màxim de pacients que pot ingressar: </label>
                 <input type="number" id="maximPacientsHospital" name="maxPacHospital"
                 title="Introdueix el nombre màxim de pacients que té l'Hospital."
                 class="form-control" required min="0" max="100"
@@ -131,8 +133,8 @@
           <!-- INICI divPacients -->
           <div class="w-100 mx-auto align-items-center border mt-8 mb-8 p-4 rounded shadow bg-white d-none" id="divPacient">
              <!-- w-100  = width: 100% -->
-            <h2 class="text-center">Pacients</h2>
-            <p class="text-center">Introdueix les dades del pacients que vols ingressar:</p>
+            <h2 class="text-center text">Pacients</h2>
+            <p class="text-center text">Introdueix les dades del pacients que vols ingressar:</p>
             <div id="dadesPacient"></div>
             <div class="text-center">
               <button type="button" class="btn btn-primary mt-4" onClick="ingressarPacients()">Ingressar</button>
@@ -143,21 +145,25 @@
 
           <!-- INICI divMalalties -->
           <div class="w-100 mx-auto align-items-center border mt-8 mb-8 p-4 rounded shadow bg-white d-none" id="divMalalties">
-            <h2 class="text-center">Malalties</h2>
-            <p class="text-center">Vista desplegable de les malalties:</p>
+            <h2 class="text-center text">Malalties</h2>
+            <p class="text-center text">Vista desplegable de les malalties:</p>
             <div id="divMalalties_Desplegable">
 
             </div>
+            <button type="button" class="btn btn-primary mt-4" onClick="ocultaControls(this)">Torna</button>
+
           </div>
+          <!-- FINAL divMalalties -->
 
           <div class="w-100 mx-auto align-items-center border mt-8 mb-8 p-4 rounded shadow bg-white d-none" id="divExp">
             <h2 class="text-center">Explicació</h2>
             <p class="text-center">Explicacio del que s'ha fet</p>
             <div>
-              <p>hola que tal</p>
+              <p>La meva pagina web esta modificada i adaptada per gen tamb disfuncio visual de tal forma que els textos es vegin be</p>
             </div>
+            <button type="button" class="btn btn-primary mt-4" onClick="ocultaControls(this)">Torna</button>
           </div>
-          <!-- FINAL divMalalties -->
+
 
           <!-- ------------------------------------------------------------------------------------ -->
           <!-- INICI divTractament -->
@@ -172,7 +178,7 @@
           <!-- INICI divControls -->
           <div class="w-100 mx-auto align-items-center border mt-8 mb-8 p-4 rounded shadow bg-white  d-none" id="divControls">
             <!-- mt margin top = 8    mt margin bottom = 8 -->
-            <h4  class="text-center mt-3 mb-3" >Control de l'aplicació</h4>
+            <h4  class="text-center mt-3 mb-3 text" >Control de l'aplicació</h4>
             <div class="form-row" id="formControls">
               <div class="text-center">
                 <button type="button" class="btn btn-primary mt-4" onClick="comprovacioInicial()" id="btnCheck">Check</button>
@@ -200,6 +206,5 @@
     <script src="./js/dadesMalalties.js" id="dadesMalaltiesJs"></script>
     <script src="./js/comprovacions.js" id="comprovacionsJs"></script>
     <script src="./js/main.js"></script>
-    <script>llistarMalalties();</script>
   </body>
 </html>

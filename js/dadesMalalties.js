@@ -29,6 +29,7 @@ var i;
 var malalties = "";
 
 function llistarMalalties(){
+  malalties="";
   malalties = malalties + "<select>";
   for (i = 0; i < llistaMalalties.length; i++) {
     malalties = malalties + "<option>" + llistaMalalties[i]+ "</option>";

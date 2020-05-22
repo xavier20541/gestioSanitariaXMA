@@ -1,4 +1,4 @@
-'use strict'
+// 'use strict'
 
 const eleID_divEspaiModal = document.getElementById("divEspaiModal");
 
@@ -23,6 +23,7 @@ const eleID_btnGestAplicacio = document.getElementById("btnGestAplicacio");
 
 const eleID_h2ResutltatFormControls = document.getElementById("h2ResutltatFormControls");
 
+hospital=null;
 /*
 taula_missatges[0][intTitol]="No habilitat"
 taula_missatges[0][intMissatge]="Ho sento, encara no està habilitat!"
@@ -96,6 +97,7 @@ function mostraBotons() {
       eleID_btnGestMalalties.disabled = false;
       eleID_btnGestMetges.disabled = false;
       eleID_btnGestAplicacio.disabled = false;
+      eleID_btnGestExp.disabled = false;
 
       $(eleID_btnGestHospitals).removeClass('btn-dark');
       $(eleID_btnGestHospitals).addClass('btn-primary');
@@ -111,6 +113,9 @@ function mostraBotons() {
 
       $(eleID_btnGestAplicacio).removeClass('btn-dark');
       $(eleID_btnGestAplicacio).addClass('btn-primary');
+
+      $(eleID_btnGestExp).removeClass('btn-dark');
+      $(eleID_btnGestExp).addClass('btn-primary');
 }
 
 function amagaBotons() {
@@ -119,6 +124,7 @@ function amagaBotons() {
       eleID_btnGestMalalties.disabled = true;
       eleID_btnGestMetges.disabled = true;
       eleID_btnGestAplicacio.disabled = true;
+      eleID_btnGestExp.disabled = true;
 
       $(eleID_btnGestHospitals).removeClass('btn-primary');
       $(eleID_btnGestHospitals).addClass('btn-dark');
@@ -134,6 +140,10 @@ function amagaBotons() {
 
       $(eleID_btnGestAplicacio).removeClass('btn-primary');
       $(eleID_btnGestAplicacio).addClass('btn-dark');
+
+      $(eleID_btnGestExp).removeClass('btn-primary');
+      $(eleID_btnGestExp).addClass('btn-dark');
+
 }
 
 
@@ -152,14 +162,17 @@ https://stackoverflow.com/questions/195951/how-can-i-change-an-elements-class-wi
 
 */
 function crearHospital() {
-  var nom = document.getElementById("nomHospital").value.toString();
+  var nom = document.getElementById("inputNomHospital").value.toString();
   var maximPacients = parseInt(document.getElementById("maximPacientsHospital").value);
 
+  var titolHospi = document.getElementsByClassName('text-center')[0];
+
   if (nom !== "" && maximPacients > 0) {
-      eleID_h1Titol.innerHTML="<h2>Gestió de l'hospital</h2>" +
+      titolHospi.innerHTML="<h2>Gestió de l'hospital</h2>" +
           "<h1><b>" + nom + "</b></h1>";
       hospital = new Hospital(nom, maximPacients);
       eleID_divHospital.classList.toggle("d-none");
+      eleID_divPacient.classList.toggle("d-none");
 
 
       var cadenaFilaPacient_1,cadenaFilaPacient_2,cadenaFilaPacient_3;
@@ -271,6 +284,7 @@ function eliminaClass(elementRebut, nomClass) {
             eleID_divMalalties.classList.toggle("d-none");
             mostraBotons();
       }
+      llistarMalalties();
       eleID_divPresentacio.classList.toggle("d-none");
       eleID_divMalalties.classList.toggle("d-none");
       amagaBotons();
@@ -291,6 +305,7 @@ function eliminaClass(elementRebut, nomClass) {
 
 
 function mostraGestioHospital(objecte){
+
       document.getElementById('tancaDivHospital').onclick = function tanca() {
             eleID_divPresentacio.classList.toggle("d-none");
             eleID_divHospital.classList.toggle("d-none");
@@ -327,3 +342,42 @@ function ocultaGestioPacients(objecteRebut){
       eleID_divControls.classList.toggle("d-none");
       mostraBotons();
    }
+
+function ingressarPacients() {
+
+  var nom = "";
+  var malaltia = "";
+
+  for (var pacient = 0; pacient < hospital.maximPacients; pacient++) {
+    nom = document.getElementById("nomPacient" + pacient.toString()).value.toString();
+    malaltia = document.getElementById("malaltia" + pacient.toString()).value.toString();
+
+    if (nom !== "" && malaltia !== "") {
+      if (hospital !== null) {
+          hospital.ingressarPacient(new Pacient(nom, malaltia));
+      }
+    }
+  }
+
+  if (hospital !== null && (hospital.pacientsIngressats.length <= hospital.maximPacients)) {
+    eleID_divPacients.classList.toggle("d-none");
+
+    // document.getElementById("nomHospitalGestio").innerHTML = hospital.nomHospital;
+
+    for (var pacient = 0; pacient < hospital.pacientsIngressats.length; pacient++) {
+      document.getElementById("dadesGestio").innerHTML += ('<div class="row" id="dadesGestioPacient' + pacient.toString() + '">' +
+        '<div class="col mb-3">' +
+          '<label for="nomPacientGestio" class="font-weight-bold">Nom: </label>   <p id="nomPacientGestio' + pacient.toString() + '">' + hospital.pacientsIngressats[pacient].nom  + '</p>' +
+        '</div>' +
+        '<div class="col mb-3">' +
+          '<label for="malaltia" class="font-weight-bold">Malaltia: </label>  <p id="malaltiaGestio' + pacient.toString() + '">' + hospital.pacientsIngressats[pacient].malaltia  + '</p>' +
+        '</div>' +
+        '<div class="col mb-3">' +
+          '<button class="btn btn-success" onClick="gestioDonarDalta(' + pacient + ')">Donar d\'alta</button> <button class="btn btn-danger" onClick="gestioMorir(' + pacient + ')">Morir</button>' +
+        '<div class="col mb-3">' +
+      '</div>');
+    }
+    eleID_divGestio.classList.toggle("d-none");
+    // document.getElementById("divGestio").classList.remove("d-none");
+  }
+}
